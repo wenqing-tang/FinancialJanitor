@@ -13,7 +13,6 @@ public class Transaction {
             double transactionAmount = Double.parseDouble(i);
             currentBalance += transactionAmount;
             System.out.println("The latest account balance is " + currentBalance + " Euro.");
-
         }
     }
 }
