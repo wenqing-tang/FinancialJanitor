@@ -13,6 +13,9 @@ public class TransactionService {
     }
 
     private void logTransaction(Double transaction) {
+        if (Math.abs(transaction) > 1e12) {
+            throw new RuntimeException("Cannot accept transaction with more than 1 trillion");
+        }
         final double currentBalance = balanceRepository.getBalance();
 
         System.out.println("\n>>>");
