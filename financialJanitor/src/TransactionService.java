@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class TransactionService {
 
     private final BalanceRepository balanceRepository;
@@ -6,7 +8,11 @@ public class TransactionService {
         this.balanceRepository = balanceRepository;
     }
 
-    public void logTransaction(Double transaction) {
+    public void logTransactions(List<Double> transactions) {
+        transactions.forEach(this::logTransaction);
+    }
+
+    private void logTransaction(Double transaction) {
         final double currentBalance = balanceRepository.getBalance();
 
         System.out.println("\n>>>");
@@ -16,5 +22,9 @@ public class TransactionService {
         System.out.println(" The latest account balance is " + nextBalance + " Euro.");
 
         balanceRepository.saveBalance(nextBalance);
+    }
+
+    public void showBalance() {
+        System.out.println("The balance is " + balanceRepository.getBalance());
     }
 }
